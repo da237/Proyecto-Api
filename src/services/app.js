@@ -1,6 +1,6 @@
-export async function getcharacter() {
+export async function getCharacters() {
     try {
-        const response = await fetch ();
+        const response = await fetch('https://rickandmortyapi.com/api/character')
 
         if(!response.ok){
             throw new Error('Error al obtener los datos');
