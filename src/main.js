@@ -1,6 +1,9 @@
 import './style.css'
 import { register, login } from './services/auth'
 import { renderLogin } from './views/loginViews'
+// import { getcharacter } from './services/app'
+import { renderHome } from './views/home'
+import { success, error } from './utils/alerts'
 
 // (cuando hagas el home lo importas)
 // import { renderHome } from './views/homeView'
@@ -8,7 +11,13 @@ import { renderLogin } from './views/loginViews'
 const app = document.querySelector('#app')
 
 function init() {
-  renderLogin(app, handleLogin, handleRegister)
+  const session = JSON.parse(localStorage.getItem('session'))
+
+  if (session) {
+    renderHome(app, session)
+  } else {
+    renderLogin(app, handleLogin, handleRegister)
+  }
 }
 
 // 🔐 LOGIN
@@ -24,9 +33,12 @@ function handleLogin(email, password) {
   localStorage.setItem('session', JSON.stringify(user))
 
   console.log('Login exitoso', user)
+  success('Bienvenido 🚀') // 👈 aquí
 
   // 👉 aquí luego cambias a home
   // renderHome(app, ...)
+  renderHome(app, user)
+  
 }
 
 // 📝 REGISTRO
@@ -37,7 +49,7 @@ function handleRegister(email, password) {
   }
 
   register({ email, password })
-  alert('Usuario creado correctamente')
+  success('Usuario creado correctamente 🎉')
 }
 
 init()

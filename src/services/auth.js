@@ -13,7 +13,7 @@ export function login(email,password){
         localStorage.setItem('currentUser', JSON.stringify(user));
         return user;
     } else {
-        throw new Error('Invalid email or password');
+        return user || null;
     }
 
 }
