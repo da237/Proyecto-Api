@@ -1,18 +1,19 @@
-// views/components/card.js
+import { addCharacter } from "../../services/storage"
 
 export function createCard(character) {
   return `
-    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 shadow-lg">
-      
-      <img src="${character.image}" alt="${character.name}" 
-        class="w-full h-40 object-cover rounded-lg mb-3" />
+    <div 
+      class="card bg-white/10 p-4 rounded-xl cursor-pointer hover:scale-105 transition"
+      data-id="${character.id}"
+    >
+      <img src="${character.image}" class="w-full h-40 object-cover rounded-lg mb-3" />
 
       <h3 class="text-lg font-bold">${character.name}</h3>
-      
-      <p class="text-sm text-gray-300">
-        ${character.species}
-      </p>
-
+      <p class="text-sm text-gray-300">${character.species}</p>
+      boton para añadir a favoritos
+      <button class="add-favorite mt-2 px-3 py-1 bg-blue-500 text-white rounded" data-id="${character.id}">
+        Añadir a favoritos
+      </button>
     </div>
   `
 }
