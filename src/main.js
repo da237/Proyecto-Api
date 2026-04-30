@@ -1,12 +1,10 @@
 import './style.css'
 import { register, login } from './services/auth'
 import { renderLogin } from './views/loginViews'
-// import { getcharacter } from './services/app'
 import { renderHome } from './views/home'
 import { success, error } from './utils/alerts'
 
-// (cuando hagas el home lo importas)
-// import { renderHome } from './views/homeView'
+
 
 const app = document.querySelector('#app')
 
@@ -25,7 +23,7 @@ function handleLogin(email, password) {
   const user = login(email, password)
 
   if (!user) {
-    alert('Credenciales incorrectas')
+    error('Credenciales incorrectas')
     return
   }
 
